@@ -103,7 +103,7 @@ def main() -> int:
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8")
 
-    datasets = load_all_datasets([ROOT / "data", ROOT / "要求与数据" / "data"])
+    datasets = load_all_datasets([ROOT / "data"])
     if not datasets:
         print("No complete datasets found. Put .nodes, .nets, and .pl files in data/.")
         return 1

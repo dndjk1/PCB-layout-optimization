@@ -8,7 +8,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def main() -> int:
-    source_dir = ROOT / "要求与数据" / "data" / "small-1_original_artifacts"
+    source_dir = ROOT / "data" / "small-1_original_artifacts"
     output_path = ROOT / "results" / "ui_uploads" / "sample_small-1.zip"
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
@@ -23,4 +23,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

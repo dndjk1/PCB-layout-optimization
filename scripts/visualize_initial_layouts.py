@@ -29,7 +29,7 @@ def main() -> int:
         sys.stdout.reconfigure(encoding="utf-8")
 
     args = parse_args()
-    datasets = load_all_datasets([ROOT / "data", ROOT / "要求与数据" / "data"])
+    datasets = load_all_datasets([ROOT / "data"])
     if args.dataset:
         wanted = set(args.dataset)
         datasets = [dataset for dataset in datasets if dataset.name in wanted]
@@ -67,26 +67,6 @@ def main() -> int:
         writer.writeheader()
         writer.writerows(rows)
     print(f"Saved: {manifest_path}")
-    return 0
-
-
-if __name__ == "__main__":
-    raise SystemExit(main())
-from pathlib import Path
-
-
-ROOT = Path(__file__).resolve().parents[1]
-
-
-def run_step(args: list[str]) -> None:
-    command = [sys.executable, *args]
-    print("$ " + " ".join(command))
-    subprocess.run(command, cwd=ROOT, check=True)
-
-
-def main() -> int:
-    run_step(["scripts/week1_inspect.py"])
-    run_step(["scripts/visualize_initial_layouts.py"])
     return 0
 
 

@@ -4,7 +4,8 @@ This project is organized for the PCB layout optimization assignment.
 
 ## Directory Layout
 
-- `data/`: Put the original assignment datasets here, such as `small-1.nodes`, `small-1.nets`, and `small-1.pl`.
+- `data/`: Stores the assignment datasets, grouped by dataset folder such as `small-1_original_artifacts/`.
+- `docs/`: Assignment notes, original spec, and reference images.
 - `src/`: Core Python modules for parsing data, computing HPWL, and checking layout legality.
 - `scripts/`: Runnable scripts for weekly checks and experiments.
 - `results/`: Generated metrics, optimized layouts, and figures.
@@ -21,7 +22,7 @@ Week 1 should build the basic pipeline:
 4. Check boundary and minimum-gap legality.
 5. Prepare the first report sections.
 
-After you receive the dataset files, place them in `data/` and run:
+After you receive the dataset folders, place them in `data/` and run:
 
 ```powershell
 python scripts/week1_inspect.py
@@ -71,3 +72,5 @@ Generated Week 1 outputs:
 - `results/initial_layouts/manifest.csv`
 - `results/ui_uploads/`
 - `results/ui_images/`
+
+Reference materials now live under `docs/`, and the legacy teacher visualizer is kept as `scripts/legacy_visualize_pcb.py`.

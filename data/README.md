@@ -1,21 +1,19 @@
 # Data Folder
 
-Put the original input files here.
+Put the original input datasets here.
 
-Expected files:
+Recommended layout:
 
 ```text
-small-1.nodes
-small-1.nets
-small-1.pl
-small-2.nodes
-small-2.nets
-small-2.pl
-...
-small-5.nodes
-small-5.nets
-small-5.pl
+data/
+  small-1_original_artifacts/
+    small-1_original_artifacts.nodes
+    small-1_original_artifacts.nets
+    small-1_original_artifacts.pl
+  small-2_original_artifacts/
+  ...
+  small-5_original_artifacts/
+  small-5_optimized/
 ```
 
-Do not put optimized output files here. Optimized `.pl` files should go under `results/` in later weeks.
-
+Do not put generated output files here. Optimized `.pl` files and images should go under `results/`.
