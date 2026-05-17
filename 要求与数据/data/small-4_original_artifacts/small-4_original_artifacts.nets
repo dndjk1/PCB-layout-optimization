@@ -1,0 +1,118 @@
+UCLA nets 1.0
+
+NumNets : 26
+NumPins : 85
+
+# PB201_A00.nets generated on 2024-09-13T102838 using /home/scratch.niansongz_research/pcb-util/pcb.py 1.0
+
+NetDegree : 1 NET_1.8V_ASIC_QPS
+	R4006 I : 0 4
+NetDegree : 3 NET_1.8V_ASIC_QPS_PG_SNS
+	U419 I : 19 28
+	C3521 I : 0 -4
+	R4006 I : 0 -4
+NetDegree : 1 NET_12VSB
+	R3958 I : 4 0
+NetDegree : 1 NET_2.5V_OSC_EAST
+	R4008 I : 4 0
+NetDegree : 3 NET_2.5V_OSC_EAST_PG_SNS
+	U419 I : 0 -29
+	C3523 I : 4 0
+	R4008 I : -4 0
+NetDegree : 1 NET_2.5V_OSC_WEST
+	R4007 I : 4 0
+NetDegree : 3 NET_2.5V_OSC_WEST_PG_SNS
+	U419 I : 13 -29
+	C3522 I : 0 -4
+	R4007 I : -4 0
+NetDegree : 14 NET_3.3V_AUX
+	U419 I : -7 -29
+	C3501 I : 0 4
+	R3917 I : 4 0
+	R3918 I : -4 0
+	R3919 I : 4 0
+	R3913 I : 0 -4
+	R3915 I : 0 -4
+	R3914 I : 0 4
+	R3920 I : -4 0
+	R3921 I : 0 -4
+	R3922 I : 0 4
+	R3923 I : 0 -4
+	R3924 I : 0 4
+	R3960 I : 4 0
+NetDegree : 2 GP_1.8V_ASIC_QPS_FB
+	R3935 I : 0 4
+	R3939 I : 0 4
+NetDegree : 4 GP_1.8V_ASIC_QPS_REF
+	U419 I : 13 28
+	R3927 I : 0 4
+	R3935 I : 0 -4
+	R3915 I : 0 4
+NetDegree : 3 GP_12VSB_COMP_REF
+	U419 I : 6 28
+	C3520 I : 4 0
+	R4004 I : -4 0
+NetDegree : 3 GP_12VSB_COMP_REF_R
+	R3959 I : -4 0
+	R3958 I : -4 0
+	R4004 I : 4 0
+NetDegree : 2 GP_12VSB_FB
+	R3963 I : 0 4
+	R3964 I : 0 4
+NetDegree : 4 GP_12VSB_REF
+	U419 I : 0 28
+	R3961 I : 0 -4
+	R3960 I : -4 0
+	R3963 I : 0 -4
+NetDegree : 2 GP_2.5V_OSC_EAST_FB
+	R3933 I : 0 -4
+	R3937 I : 0 -4
+NetDegree : 4 GP_2.5V_OSC_EAST_REF
+	U419 I : 6 -29
+	R3931 I : 0 4
+	R3933 I : 0 4
+	R3913 I : 0 4
+NetDegree : 2 GP_2.5V_OSC_WEST_FB
+	R3938 I : 0 -4
+	R3934 I : 0 -4
+NetDegree : 4 GP_2.5V_OSC_WEST_REF
+	U419 I : 19 -29
+	R3914 I : 0 -4
+	R3934 I : 0 4
+	R3929 I : 0 -4
+NetDegree : 2 S_1.8V_ASIC_QPS_PG
+	Q19 I : 7 -9
+	R3923 I : 0 4
+NetDegree : 5 S_1.8V_ASIC_QPS_PG_L
+	U419 I : -20 28
+	R3919 I : -4 0
+	R3939 I : 0 -4
+	Q19 I : 0 9
+	C3504 I : -4 0
+NetDegree : 2 S_12VSB_PG
+	Q19 I : -6 9
+	R3924 I : 0 -4
+NetDegree : 5 S_12VSB_PG_L
+	U419 I : -13 28
+	R3920 I : 4 0
+	Q19 I : 0 -9
+	C3505 I : 4 0
+	R3964 I : 0 -4
+NetDegree : 2 S_2.5V_OSC_ASIC_EAST_PG
+	Q18 I : 7 -8
+	R3921 I : 0 4
+NetDegree : 5 S_2.5V_OSC_ASIC_EAST_PG_L
+	U419 I : -13 -29
+	R3917 I : -4 0
+	R3937 I : 0 4
+	Q18 I : 0 9
+	C3502 I : -4 0
+NetDegree : 2 S_2.5V_OSC_ASIC_WEST_PG
+	Q18 I : -6 9
+	R3922 I : 0 -4
+NetDegree : 5 S_2.5V_OSC_ASIC_WEST_PG_L
+	U419 I : -20 -29
+	R3918 I : 4 0
+	R3938 I : 0 4
+	Q18 I : 0 -8
+	C3503 I : 4 0

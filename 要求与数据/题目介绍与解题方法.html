@@ -1,0 +1,273 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown Document</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 100%;
+			height:1200;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        h1, h2, h3, h4, h5, h6 { margin-top: 1.5rem; margin-bottom: 1rem; }
+        pre { background: #f6f8fa; padding: 1rem; border-radius: 6px; overflow-x: auto; }
+        code { background: #f6f8fa; padding: 0.2rem 0.4rem; border-radius: 3px; }
+        blockquote { border-left: 4px solid #dfe2e5; padding-left: 1rem; margin: 1rem 0; color: #6a737d; }
+        table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+        th, td { border: 1px solid #dfe2e5; padding: 0.5rem; text-align: left; }
+        th { background: #f6f8fa; }
+    </style>
+</head>
+<body>
+<h1 id="h1-pcb-"><a name="PCB 布局优化大作业题目介绍与解题方法" class="reference-link"></a><span class="header-link octicon octicon-link"></span>PCB 布局优化大作业题目介绍与解题方法</h1><h2 id="h2-1-"><a name="1. 文档目的" class="reference-link"></a><span class="header-link octicon octicon-link"></span>1. 文档目的</h2><p>这份文档基于当前工作区中的 4 类材料整理而成：</p>
+<ul>
+<li><code>布局优化大作业/大作业说明.md</code></li><li><code>布局优化大作业/data/</code> 下的 <code>small-1</code> 到 <code>small-5</code> 数据集</li><li><code>布局优化大作业/visualize_pcb.py</code></li><li><code>选题二 面向多目标约束的PCB布局启发式优化算法研究.pptx</code></li></ul>
+<p>目标是把题目要求、输入输出格式、推荐实现步骤、可行算法路线和实验报告写法整理成一份可直接照着做的说明。</p>
+<hr>
+<h2 id="h2-2-"><a name="2. 题目到底要做什么" class="reference-link"></a><span class="header-link octicon octicon-link"></span>2. 题目到底要做什么</h2><p>从题目说明看，这次大作业的核心任务是：</p>
+<p>在给定 PCB 元器件、网络连接和初始布局的前提下，调整元器件位置，使总线长指标 <code>HPWL</code> 尽可能小，同时满足布局合法性约束。</p>
+<p>可以把它理解成一个带约束的组合优化问题：</p>
+<ul>
+<li>决策变量：每个元器件的位置；朝向字段按输入 <code>*.pl</code> 保留，不作为本次作业的主要优化变量</li><li>优化目标：最小化所有网络的 <code>HPWL</code></li><li>约束条件：<ul>
+<li>元器件之间至少满足最小间距</li><li>所有元器件必须放在允许的画布范围内</li><li>输出布局文件格式必须与输入 <code>*.pl</code> 一致</li></ul>
+</li></ul>
+<p>需要注意两点：</p>
+<ol>
+<li><code>pptx</code> 的题目背景是“面向多目标约束的 PCB 布局启发式优化”，范围更大，包含 DRC、总线长度、SIPI 等更广义目标。</li><li>当前这次大作业的实际落地版本已经简化为“以 HPWL 为主目标，带最小间距和边界约束”的布局优化问题。</li></ol>
+<p>所以实现时不要把问题做得过宽。先把单目标 HPWL 优化做扎实，比空泛谈多目标更重要。</p>
+<hr>
+<h2 id="h2-3-"><a name="3. 数据文件怎么理解" class="reference-link"></a><span class="header-link octicon octicon-link"></span>3. 数据文件怎么理解</h2><p>每个数据集由 3 个文件组成：</p>
+<ul>
+<li><code>*.nodes</code>：元器件尺寸</li><li><code>*.nets</code>：网络连接和引脚相对偏移</li><li><code>*.pl</code>：元器件初始位置与朝向</li></ul>
+<h3 id="h3-3-1-code-nodes-code-"><a name="3.1 &lt;code&gt;.nodes&lt;/code&gt;" class="reference-link"></a><span class="header-link octicon octicon-link"></span>3.1 <code>.nodes</code></h3><p>这一类文件定义元器件名、宽度和高度，例如：</p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code class="lang-text"><span class="pln">R96_3 </span><span class="lit">5</span><span class="pln"> </span><span class="lit">10</span></code></li><li class="L1"><code class="lang-text"><span class="pln">R52_3 </span><span class="lit">10</span><span class="pln"> </span><span class="lit">5</span></code></li><li class="L2"><code class="lang-text"><span class="pln">U2_3 </span><span class="lit">71</span><span class="pln"> </span><span class="lit">71</span></code></li></ol></pre>
+<p>解释如下：</p>
+<ul>
+<li><code>R96_3</code>、<code>R52_3</code> 是普通阻容器件，尺寸较小</li><li><code>U2_3</code> 是大尺寸芯片，通常是布局中的关键器件</li></ul>
+<p>程序中建议解析成：</p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code class="lang-text"><span class="pln">name </span><span class="pun">-&gt;</span><span class="pln"> </span><span class="pun">{</span><span class="pln">width</span><span class="pun">,</span><span class="pln"> height</span><span class="pun">}</span></code></li></ol></pre>
+<h3 id="h3-3-2-code-nets-code-"><a name="3.2 &lt;code&gt;.nets&lt;/code&gt;" class="reference-link"></a><span class="header-link octicon octicon-link"></span>3.2 <code>.nets</code></h3><p>这一类文件定义每个网络包含哪些引脚，以及引脚相对于元器件中心的偏移量，例如：</p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code class="lang-text"><span class="typ">NetDegree</span><span class="pln"> </span><span class="pun">:</span><span class="pln"> </span><span class="lit">7</span><span class="pln"> NET_3V3_CTRL_HVDD_DVDD_PL0_3</span></code></li><li class="L1"><code class="lang-text"><span class="pln">    R37_3 I </span><span class="pun">:</span><span class="pln"> </span><span class="lit">4</span><span class="pln"> </span><span class="lit">0</span></code></li><li class="L2"><code class="lang-text"><span class="pln">    R38_3 I </span><span class="pun">:</span><span class="pln"> </span><span class="lit">4</span><span class="pln"> </span><span class="lit">0</span></code></li><li class="L3"><code class="lang-text"><span class="pln">    R40_3 I </span><span class="pun">:</span><span class="pln"> </span><span class="pun">-</span><span class="lit">4</span><span class="pln"> </span><span class="lit">0</span></code></li><li class="L4"><code class="lang-text"><span class="pln">    R56_3 I </span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="lit">4</span></code></li><li class="L5"><code class="lang-text"><span class="pln">    C19_3 I </span><span class="pun">:</span><span class="pln"> </span><span class="pun">-</span><span class="lit">4</span><span class="pln"> </span><span class="lit">0</span></code></li><li class="L6"><code class="lang-text"><span class="pln">    C20_3 I </span><span class="pun">:</span><span class="pln"> </span><span class="pun">-</span><span class="lit">7</span><span class="pln"> </span><span class="lit">0</span></code></li><li class="L7"><code class="lang-text"><span class="pln">    U2_3 I </span><span class="pun">:</span><span class="pln"> </span><span class="pun">-</span><span class="lit">34</span><span class="pln"> </span><span class="pun">-</span><span class="lit">18</span></code></li></ol></pre>
+<p>其中：</p>
+<ul>
+<li><code>NetDegree</code> 表示这个网络有多少个引脚</li><li><code>(dx, dy)</code> 表示该引脚相对元器件中心的偏移</li></ul>
+<p>程序中建议解析成：</p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code class="lang-text"><span class="pln">net </span><span class="pun">-&gt;</span><span class="pln"> </span><span class="pun">[</span><span class="pln"> </span><span class="pun">(</span><span class="pln">component</span><span class="pun">,</span><span class="pln"> dx</span><span class="pun">,</span><span class="pln"> dy</span><span class="pun">),</span><span class="pln"> </span><span class="pun">...</span><span class="pln"> </span><span class="pun">]</span></code></li></ol></pre>
+<h3 id="h3-3-3-code-pl-code-"><a name="3.3 &lt;code&gt;.pl&lt;/code&gt;" class="reference-link"></a><span class="header-link octicon octicon-link"></span>3.3 <code>.pl</code></h3><p>这一类文件给出元器件左下角坐标和朝向，例如：</p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code class="lang-text"><span class="pln">R96_3 </span><span class="lit">2500</span><span class="pln"> </span><span class="lit">1773</span><span class="pln"> </span><span class="pun">:</span><span class="pln"> W</span></code></li><li class="L1"><code class="lang-text"><span class="pln">R52_3 </span><span class="lit">3762</span><span class="pln"> </span><span class="lit">2031</span><span class="pln"> </span><span class="pun">:</span><span class="pln"> N</span></code></li><li class="L2"><code class="lang-text"><span class="pln">U2_3 </span><span class="lit">3693</span><span class="pln"> </span><span class="lit">2056</span><span class="pln"> </span><span class="pun">:</span><span class="pln"> E</span></code></li></ol></pre>
+<p>这里有两个关键点：</p>
+<ul>
+<li><code>(x, y)</code> 是元器件矩形的左下角，不是中心点</li><li><code>N/E/S/W</code> 表示朝向；本次作业的 HPWL 计算按题面给出的公式处理，即使用元件左下角、宽高和引脚相对中心偏移计算引脚绝对坐标</li></ul>
+<p>程序中建议解析成：</p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code class="lang-text"><span class="pln">name </span><span class="pun">-&gt;</span><span class="pln"> </span><span class="pun">{</span><span class="pln">x</span><span class="pun">,</span><span class="pln"> y</span><span class="pun">,</span><span class="pln"> orient</span><span class="pun">}</span></code></li></ol></pre>
+<hr>
+<h2 id="h2-4-"><a name="4. 目标函数怎么计算" class="reference-link"></a><span class="header-link octicon octicon-link"></span>4. 目标函数怎么计算</h2><p>题目要求使用 <code>HPWL</code> 作为优化目标：</p>
+<p class="editormd-tex">HPWL = \sum_{net} [(\max x_i - \min x_i) + (\max y_i - \min y_i)]</p><p>其中 <code>(x_i, y_i)</code> 是某个网络中第 <code>i</code> 个引脚的绝对坐标。</p>
+<p>引脚绝对坐标的基本计算方式是：</p>
+<p class="editormd-tex">x_{pin} = x_{comp} + \frac{w}{2} + dx</p><p class="editormd-tex">y_{pin} = y_{comp} + \frac{h}{2} + dy</p><p>本次作业说明和当前工作区里的 <code>visualize_pcb.py</code> 都按上面的公式直接使用原始 <code>dx, dy</code>，没有要求根据 <code>N/E/S/W</code> 对引脚偏移做旋转变换。因此求解器应优先严格对齐题面公式，保证 HPWL 计算口径和作业要求一致。</p>
+<p>如果后续想把方案扩展成更完整的 PCB 布局模型，可以把朝向旋转、宽高互换和引脚偏移变换作为扩展项，但不要把它作为本次作业的必要实现。</p>
+<hr>
+<h2 id="h2-5-"><a name="5. 约束条件怎么检查" class="reference-link"></a><span class="header-link octicon octicon-link"></span>5. 约束条件怎么检查</h2><h3 id="h3-5-1-"><a name="5.1 最小间距约束" class="reference-link"></a><span class="header-link octicon octicon-link"></span>5.1 最小间距约束</h3><p>题目要求任意两个元器件至少保留 2 个单位的间距。题目给出的判定方式本质上是：</p>
+<ul>
+<li>计算两个矩形在 <code>x</code> 方向上的间距 <code>gap_x</code></li><li>计算两个矩形在 <code>y</code> 方向上的间距 <code>gap_y</code></li><li>当且仅当 <code>gap_x &gt;= 2</code> 或 <code>gap_y &gt;= 2</code> 时，这两个器件的相对位置合法</li></ul>
+<p>直观理解就是：</p>
+<ul>
+<li>两个矩形可以在某一个方向上靠得比较近</li><li>但必须至少在一个方向上拉开足够的安全距离</li></ul>
+<p>程序里最稳妥的做法不是直接背公式，而是统一写成矩形合法性判断函数：</p>
+<ol>
+<li>先得到器件 A、B 的左右上下边界</li><li>计算两个方向上的分离量</li><li>判断是否满足最小间距</li></ol>
+<p>建议单独封装：</p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code class="lang-text"><span class="pln">is_non_overlapping_with_gap</span><span class="pun">(</span><span class="pln">comp_a</span><span class="pun">,</span><span class="pln"> comp_b</span><span class="pun">,</span><span class="pln"> min_gap</span><span class="pun">=</span><span class="lit">2</span><span class="pun">)</span></code></li></ol></pre>
+<h3 id="h3-5-2-"><a name="5.2 边界约束" class="reference-link"></a><span class="header-link octicon octicon-link"></span>5.2 边界约束</h3><p>题目要求所有元器件都放在给定画布范围内。</p>
+<p>当前数据文件里没有看到单独的 board outline 文件，因此实现上通常有两种做法：</p>
+<ul>
+<li>以原始布局的外接矩形作为合法画布范围</li><li>在代码里固定一个已知边界框</li></ul>
+<p>更稳妥的写法是：</p>
+<ul>
+<li>默认从原始 <code>*.pl</code> 推导布局边界</li><li>在代码中预留参数，允许手动指定边界</li></ul>
+<p>这样既能兼容当前作业，也便于后续实验调参。</p>
+<p>需要在报告中说明：如果采用原始布局外接矩形作为画布边界，这是基于当前数据文件缺少独立 board outline 的实现假设。</p>
+<hr>
+<h2 id="h2-6-"><a name="6. 这道题推荐怎么做" class="reference-link"></a><span class="header-link octicon octicon-link"></span>6. 这道题推荐怎么做</h2><p>从作业规模看，最实用的路线不是复杂的精确算法，而是“启发式初始化 + 局部搜索/模拟退火 + 合法性修复”的组合方法。</p>
+<p>推荐主线如下：</p>
+<ol>
+<li>先完成数据解析与 HPWL 计算</li><li>再完成合法性检查</li><li>然后实现一个能输出新 <code>*.pl</code> 的基线优化器</li><li>最后再用更强的搜索策略去压低 HPWL</li></ol>
+<p>一个比较稳、也比较好写报告的方法是：</p>
+<ul>
+<li>基线：贪心压缩或简单局部搜索</li><li>主方法：模拟退火</li><li>可选增强：按网络关系做聚类移动，或引入交换操作</li></ul>
+<hr>
+<h2 id="h2-7-"><a name="7. 推荐实现步骤" class="reference-link"></a><span class="header-link octicon octicon-link"></span>7. 推荐实现步骤</h2><p>下面这套步骤基本可以直接作为你的开发顺序。</p>
+<h3 id="h3--"><a name="第一步：写解析器" class="reference-link"></a><span class="header-link octicon octicon-link"></span>第一步：写解析器</h3><p>先把 3 类文件都读出来，建立统一的数据结构：</p>
+<ul>
+<li><code>components[name] = {width, height}</code></li><li><code>placements[name] = {x, y, orient}</code></li><li><code>nets = [{name, pins}]</code></li></ul>
+<p>这一步完成后，先打印：</p>
+<ul>
+<li>元器件数</li><li>网络数</li><li>总引脚数</li><li>最大器件尺寸</li></ul>
+<p>如果这些统计值和题面一致，说明解析基本没问题。</p>
+<p>当前工作区中已经能确认的规模如下：</p>
+<table>
+<thead>
+<tr>
+<th>数据集</th>
+<th style="text-align:right">元器件数</th>
+<th style="text-align:right">Nets</th>
+<th style="text-align:right">Pins</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>small-1</code></td>
+<td style="text-align:right">57</td>
+<td style="text-align:right">85</td>
+<td style="text-align:right">167</td>
+</tr>
+<tr>
+<td><code>small-2</code></td>
+<td style="text-align:right">43</td>
+<td style="text-align:right">82</td>
+<td style="text-align:right">129</td>
+</tr>
+<tr>
+<td><code>small-3</code></td>
+<td style="text-align:right">41</td>
+<td style="text-align:right">49</td>
+<td style="text-align:right">105</td>
+</tr>
+<tr>
+<td><code>small-4</code></td>
+<td style="text-align:right">46</td>
+<td style="text-align:right">26</td>
+<td style="text-align:right">85</td>
+</tr>
+<tr>
+<td><code>small-5</code></td>
+<td style="text-align:right">115</td>
+<td style="text-align:right">199</td>
+<td style="text-align:right">334</td>
+</tr>
+</tbody>
+</table>
+<p>其中 <code>small-5</code> 是示例数据，不计分。</p>
+<h3 id="h3--hpwl-"><a name="第二步：写 HPWL 计算器" class="reference-link"></a><span class="header-link octicon octicon-link"></span>第二步：写 HPWL 计算器</h3><p>建议先实现两个层次的接口：</p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code class="lang-text"><span class="pln">calc_net_hpwl</span><span class="pun">(</span><span class="pln">net</span><span class="pun">,</span><span class="pln"> placement</span><span class="pun">)</span></code></li><li class="L1"><code class="lang-text"><span class="pln">calc_total_hpwl</span><span class="pun">(</span><span class="pln">all_nets</span><span class="pun">,</span><span class="pln"> placement</span><span class="pun">)</span></code></li></ol></pre>
+<p>这样做的好处是：</p>
+<ul>
+<li>便于调试单条网络</li><li>后面做增量更新时也方便复用</li></ul>
+<p>这一步完成后，可以先验证 <code>small-5</code> 的初始布局。按当前数据计算，<code>small-5_original_artifacts</code> 的总 HPWL 约为 <code>9075.0</code>，参考优化结果 <code>small-5_optimized</code> 约为 <code>2882.0</code>。这说明题目中的优化空间非常大。</p>
+<h3 id="h3--"><a name="第三步：写合法性检查器" class="reference-link"></a><span class="header-link octicon octicon-link"></span>第三步：写合法性检查器</h3><p>至少要有下面几个函数：</p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code class="lang-text"><span class="pln">check_boundary</span><span class="pun">(</span><span class="pln">component</span><span class="pun">,</span><span class="pln"> placement</span><span class="pun">,</span><span class="pln"> board_bbox</span><span class="pun">)</span></code></li><li class="L1"><code class="lang-text"><span class="pln">check_pairwise_gap</span><span class="pun">(</span><span class="pln">component_a</span><span class="pun">,</span><span class="pln"> component_b</span><span class="pun">,</span><span class="pln"> placement</span><span class="pun">,</span><span class="pln"> min_gap</span><span class="pun">)</span></code></li><li class="L2"><code class="lang-text"><span class="pln">check_layout_legality</span><span class="pun">(</span><span class="pln">all_components</span><span class="pun">,</span><span class="pln"> placement</span><span class="pun">,</span><span class="pln"> board_bbox</span><span class="pun">,</span><span class="pln"> min_gap</span><span class="pun">)</span></code></li></ol></pre>
+<p>建议一开始先用朴素的两两检查，因为数据规模不大，足够跑通。</p>
+<p>如果后面搜索迭代很多，再考虑：</p>
+<ul>
+<li>网格索引</li><li>扫描线</li><li>邻域候选筛选</li></ul>
+<h3 id="h3--"><a name="第四步：先做一个可运行的基线方法" class="reference-link"></a><span class="header-link octicon octicon-link"></span>第四步：先做一个可运行的基线方法</h3><p>不要一上来就写复杂退火。先做一个简单但可运行的方法：</p>
+<ol>
+<li>从原始布局出发</li><li>随机选择一个元器件</li><li>尝试向四周小范围移动</li><li>如果合法且 HPWL 下降，就接受</li><li>重复若干轮</li></ol>
+<p>这个版本的意义不是拿最好结果，而是尽快打通：</p>
+<ul>
+<li>输入读取</li><li>目标函数</li><li>约束检查</li><li>输出 <code>*.pl</code></li></ul>
+<p>只要这条链路通了，后续换算法就很容易。</p>
+<h3 id="h3--"><a name="第五步：加入更有效的邻域操作" class="reference-link"></a><span class="header-link octicon octicon-link"></span>第五步：加入更有效的邻域操作</h3><p>推荐至少准备 3 类动作：</p>
+<ol>
+<li>平移：把某个器件移动到附近位置</li><li>交换：交换两个器件的位置</li><li>聚类拉近：把与高连接度器件相连的器件向其中心靠拢</li></ol>
+<p>为什么这三类动作有效：</p>
+<ul>
+<li>平移适合微调</li><li>交换适合跳出局部结构</li><li>聚类拉近有利于快速降低长网络的跨度</li></ul>
+<p>如果时间有限，优先顺序是：</p>
+<ol>
+<li>平移</li><li>交换</li><li>聚类拉近</li></ol>
+<h3 id="h3--"><a name="第六步：主算法用模拟退火" class="reference-link"></a><span class="header-link octicon octicon-link"></span>第六步：主算法用模拟退火</h3><p>模拟退火很适合这类离散布局问题，因为：</p>
+<ul>
+<li>允许在早期接受少量变差解，避免卡死在局部最优</li><li>实现难度适中</li><li>报告也容易讲清楚</li></ul>
+<p>推荐的退火框架如下：</p>
+<ol>
+<li>初始解设为原始布局或基线优化后的布局</li><li>设定初始温度 <code>T0</code></li><li>每轮随机生成一个邻域动作</li><li>若新解更优则接受</li><li>若更差，则按概率 <code>exp(-delta / T)</code> 接受</li><li>温度按比例衰减</li><li>直到达到终止条件</li></ol>
+<p>常见终止条件：</p>
+<ul>
+<li>温度低于阈值</li><li>连续若干轮无改进</li><li>达到最大迭代次数</li></ul>
+<h3 id="h3--"><a name="第七步：做增量代价计算" class="reference-link"></a><span class="header-link octicon octicon-link"></span>第七步：做增量代价计算</h3><p>这是后期最值得投入的优化点。</p>
+<p>如果每次移动一个器件都重新计算全局 HPWL，会浪费很多时间。更合理的做法是：</p>
+<ol>
+<li>预先记录每个器件属于哪些网络</li><li>当某个器件移动时，只重算受影响的那些网络</li><li>用“新网络 HPWL 之和 - 旧网络 HPWL 之和”得到增量代价</li></ol>
+<p>这样通常能把迭代效率提高一个数量级。</p>
+<h3 id="h3--"><a name="第八步：加入合法性修复" class="reference-link"></a><span class="header-link octicon octicon-link"></span>第八步：加入合法性修复</h3><p>搜索过程中经常会出现：</p>
+<ul>
+<li>出界</li><li>与别的器件间距不足</li></ul>
+<p>推荐两种处理方式：</p>
+<ul>
+<li>严格模式：非法解直接拒绝</li><li>修复模式：先投影回边界，再尝试局部挪开冲突器件</li></ul>
+<p>作业实现里建议优先使用严格模式，因为：</p>
+<ul>
+<li>逻辑简单</li><li>调试成本低</li><li>结果更容易解释</li></ul>
+<p>如果后面想进一步提升效果，再引入修复机制。</p>
+<h3 id="h3--"><a name="第九步：输出并验证结果" class="reference-link"></a><span class="header-link octicon octicon-link"></span>第九步：输出并验证结果</h3><p>优化完成后，需要输出新的 <code>*.pl</code> 文件，并完成 3 类验证：</p>
+<ol>
+<li><code>HPWL</code> 是否降低</li><li>布局是否合法</li><li>可视化结果是否合理</li></ol>
+<p>当前工作区自带 <code>visualize_pcb.py</code>，可直接用于生成布局图，对写报告很有帮助。</p>
+<hr>
+<h2 id="h2-8-"><a name="8. 一条比较稳的算法路线" class="reference-link"></a><span class="header-link octicon octicon-link"></span>8. 一条比较稳的算法路线</h2><p>如果你希望方案既容易实现，又能写出像样的报告，建议采用下面这条路线：</p>
+<h3 id="h3-u65B9u6848u540Du79F0"><a name="方案名称" class="reference-link"></a><span class="header-link octicon octicon-link"></span>方案名称</h3><p>基于模拟退火的 PCB 元器件布局优化方法</p>
+<h3 id="h3-u6838u5FC3u601Du60F3"><a name="核心思想" class="reference-link"></a><span class="header-link octicon octicon-link"></span>核心思想</h3><ol>
+<li>用 Bookshelf 数据建立元器件、引脚和网络模型</li><li>用 HPWL 衡量布局优劣</li><li>用最小间距和边界条件保证可行性</li><li>用平移和交换作为局部搜索动作</li><li>用模拟退火控制搜索过程，平衡探索与收敛</li></ol>
+<h3 id="h3-u8FD9u6761u8DEFu7EBFu7684u4F18u70B9"><a name="这条路线的优点" class="reference-link"></a><span class="header-link octicon octicon-link"></span>这条路线的优点</h3><ul>
+<li>代码量可控</li><li>思路清晰</li><li>容易做参数实验</li><li>容易画出收敛曲线</li><li>容易解释为什么有效</li></ul>
+<h3 id="h3-u8FD9u6761u8DEFu7EBFu7684u7F3Au70B9"><a name="这条路线的缺点" class="reference-link"></a><span class="header-link octicon octicon-link"></span>这条路线的缺点</h3><ul>
+<li>参数较多，需要调温度和迭代次数</li><li>如果邻域设计太弱，收敛速度会偏慢</li><li>如果合法性检查太慢，整体运行时间会上升</li></ul>
+<p>这几个缺点都可以在报告里作为“后续改进方向”来写。</p>
+<hr>
+<h2 id="h2-9-"><a name="9. 写代码时最容易踩的坑" class="reference-link"></a><span class="header-link octicon octicon-link"></span>9. 写代码时最容易踩的坑</h2><h3 id="h3-9-1-hpwl-"><a name="9.1 HPWL 计算口径不一致" class="reference-link"></a><span class="header-link octicon octicon-link"></span>9.1 HPWL 计算口径不一致</h3><p>本次作业的 HPWL 应按题面公式计算：</p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code class="lang-text"><span class="pln">x_pin </span><span class="pun">=</span><span class="pln"> x_comp </span><span class="pun">+</span><span class="pln"> w_comp </span><span class="pun">/</span><span class="pln"> </span><span class="lit">2</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> dx</span></code></li><li class="L1"><code class="lang-text"><span class="pln">y_pin </span><span class="pun">=</span><span class="pln"> y_comp </span><span class="pun">+</span><span class="pln"> h_comp </span><span class="pun">/</span><span class="pln"> </span><span class="lit">2</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> dy</span></code></li></ol></pre>
+<p>不要在主实验里自行加入未说明的朝向旋转规则，否则可能导致你计算出的 HPWL 和作业说明、可视化脚本、报告对比口径不一致。</p>
+<h3 id="h3-9-2-code-x-y-code-"><a name="9.2 误把 &lt;code&gt;(x, y)&lt;/code&gt; 当成中心坐标" class="reference-link"></a><span class="header-link octicon octicon-link"></span>9.2 误把 <code>(x, y)</code> 当成中心坐标</h3><p>题目里的 <code>(x, y)</code> 是左下角，不是中心点。这个错误会直接导致：</p>
+<ul>
+<li>引脚位置算错</li><li>HPWL 算错</li><li>边界检查算错</li></ul>
+<h3 id="h3-9-3-"><a name="9.3 合法性判断写反" class="reference-link"></a><span class="header-link octicon octicon-link"></span>9.3 合法性判断写反</h3><p>最小间距约束不是简单的“不重叠”，而是“至少在一个方向上分开 2 个单位”。这比普通矩形不重叠更严格。</p>
+<h3 id="h3-9-4-"><a name="9.4 每次都全量重算" class="reference-link"></a><span class="header-link octicon octicon-link"></span>9.4 每次都全量重算</h3><p>小数据集还能跑，但一旦迭代多了，效率会迅速变差。建议至少在第二版实现增量重算。</p>
+<h3 id="h3-9-5-"><a name="9.5 只看数值不看图" class="reference-link"></a><span class="header-link octicon octicon-link"></span>9.5 只看数值不看图</h3><p>HPWL 下降不代表布局一定正常。可视化能快速暴露：</p>
+<ul>
+<li>器件堆叠</li><li>异常散布</li><li>某个器件被挤到边界角落</li></ul>
+<p>所以最终一定要看图。</p>
+<hr>
+<h2 id="h2-10-"><a name="10. 报告可以怎么写" class="reference-link"></a><span class="header-link octicon octicon-link"></span>10. 报告可以怎么写</h2><p>实验报告建议按照下面的结构组织。</p>
+<h3 id="h3-10-1-"><a name="10.1 问题定义" class="reference-link"></a><span class="header-link octicon octicon-link"></span>10.1 问题定义</h3><p>写清楚：</p>
+<ul>
+<li>输入是什么</li><li>输出是什么</li><li>目标函数是什么</li><li>约束是什么</li></ul>
+<h3 id="h3-10-2-"><a name="10.2 方法描述" class="reference-link"></a><span class="header-link octicon octicon-link"></span>10.2 方法描述</h3><p>重点说明：</p>
+<ul>
+<li>数据结构</li><li>HPWL 计算方法</li><li>邻域动作设计</li><li>模拟退火流程</li><li>合法性检查方法</li></ul>
+<h3 id="h3-10-3-"><a name="10.3 实验设置" class="reference-link"></a><span class="header-link octicon octicon-link"></span>10.3 实验设置</h3><p>给出：</p>
+<ul>
+<li>初始温度</li><li>降温系数</li><li>每温度迭代次数</li><li>最大迭代轮数</li><li>最小间距参数</li><li>运行环境</li></ul>
+<h3 id="h3-10-4-"><a name="10.4 结果展示" class="reference-link"></a><span class="header-link octicon octicon-link"></span>10.4 结果展示</h3><p>对每个数据集列出：</p>
+<ul>
+<li>初始 HPWL</li><li>优化后 HPWL</li><li>降低比例</li><li>运行时间</li></ul>
+<p>建议用表格表示。</p>
+<h3 id="h3-10-5-"><a name="10.5 可视化与分析" class="reference-link"></a><span class="header-link octicon octicon-link"></span>10.5 可视化与分析</h3><p>插入优化前后布局图，分析：</p>
+<ul>
+<li>高连接器件是否更集中</li><li>长距离网络是否减少</li><li>哪类元器件移动最明显</li><li>算法是否出现局部拥挤现象</li></ul>
+<h3 id="h3-10-6-"><a name="10.6 不足与改进" class="reference-link"></a><span class="header-link octicon octicon-link"></span>10.6 不足与改进</h3><p>可以写：</p>
+<ul>
+<li>目前只优化 HPWL，尚未显式纳入更多电性能指标</li><li>合法性检查仍是朴素实现</li><li>邻域动作还可以更丰富</li><li>后续可扩展为多目标优化或自适应参数调优</li></ul>
+<p>这样就能自然呼应 <code>pptx</code> 中更大的研究方向。</p>
+<hr>
+<h2 id="h2-11-"><a name="11. 建议的最终提交内容" class="reference-link"></a><span class="header-link octicon octicon-link"></span>11. 建议的最终提交内容</h2><p>建议至少准备以下文件：</p>
+<ul>
+<li>主程序，例如 <code>main.py</code> 或 <code>optimize_pcb.py</code></li><li>数据解析模块</li><li>HPWL 与合法性检查模块</li><li>优化后的 <code>*.pl</code> 文件</li><li>可视化结果图</li><li>实验报告 PDF</li><li>简短运行说明</li></ul>
+<p>运行说明建议写清：</p>
+<ul>
+<li>Python 版本</li><li>依赖库</li><li>执行命令</li><li>输出文件位置</li></ul>
+<h3 id="h3-11-1-"><a name="11.1 关于加分项和高分项" class="reference-link"></a><span class="header-link octicon octicon-link"></span>11.1 关于加分项和高分项</h3><p>当前 <code>大作业说明.md</code> 没有写明单独的“加分项”。但从报告要求看，下面这些内容会明显提升完成度：</p>
+<ul>
+<li>对 4 个计分数据集都给出优化前后 HPWL 对比</li><li>记录运行时间、迭代次数和主要参数</li><li>给出优化过程的收敛曲线</li><li>做不同方法或不同参数的对比实验</li><li>插入优化前后的布局可视化图，并解释 HPWL 下降是否对应更合理的布局</li></ul>
+<p>也就是说，真正应该优先补强的是“结果对比、参数分析、收敛过程和可视化分析”，而不是脱离题面额外扩展复杂约束。</p>
+<hr>
+<h2 id="h2-12-"><a name="12. 一句话总结" class="reference-link"></a><span class="header-link octicon octicon-link"></span>12. 一句话总结</h2><p>这道题最稳的做法不是追求花哨，而是按“解析数据 -&gt; 正确计算 HPWL -&gt; 严格检查合法性 -&gt; 用模拟退火做局部搜索 -&gt; 输出结果并可视化验证”这条链路一步一步做扎实。只要这五件事做完整，代码、结果和报告都会比较顺。</p>
+
+</body>
+</html>

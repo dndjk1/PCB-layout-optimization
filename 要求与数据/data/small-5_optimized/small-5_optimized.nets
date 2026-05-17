@@ -1,0 +1,540 @@
+UCLA nets 1.0
+
+NumNets : 199
+NumPins : 334
+
+# ET095_A00.nets generated on 2024-09-13T102842 using /home/scratch.niansongz_research/pcb-util/pcb.py 1.0
+
+NetDegree : 2 NET_12V_HVDD_DVDD_ASIC1
+	R59_3 I : -4 0
+	R87_3 I : 0 -4
+NetDegree : 1 NET_12V_VDD_ASIC1
+	R32_3 I : 0 4
+NetDegree : 6 NET_3V3_CTRL
+	C5_3 I : 0 4
+	R29_3 I : 0 4
+	C18_3 I : 0 -4
+	R56_3 I : 0 -4
+	C33_3 I : 0 -4
+	R84_3 I : 0 -4
+NetDegree : 7 NET_3V3_CTRL_HVDD_DVDD_PL0_3
+	R37_3 I : 4 0
+	R38_3 I : 4 0
+	R40_3 I : -4 0
+	R56_3 I : 0 4
+	C19_3 I : -4 0
+	C20_3 I : -7 0
+	U2_3 I : -34 -18
+NetDegree : 7 NET_3V3_CTRL_HVDD_DVDD_PL1_3
+	R65_3 I : 4 0
+	R66_3 I : 4 0
+	R68_3 I : -4 0
+	R84_3 I : 0 4
+	C34_3 I : -4 0
+	C35_3 I : -7 0
+	U3_3 I : -34 -18
+NetDegree : 7 NET_3V3_CTRL_VDD_3
+	U1_3 I : 34 18
+	C7_3 I : 7 0
+	C6_3 I : 4 0
+	R2_3 I : -4 0
+	R1_3 I : -4 0
+	R29_3 I : 0 -4
+	R4_3 I : 4 0
+NetDegree : 1 AG_DVDD_PL0_ASIC1_PWMVID_R
+	U2_3 I : 35 14
+NetDegree : 1 AG_DVDD_PL0_PWM_PH1_3
+	R49_3 I : 4 0
+NetDegree : 2 AG_DVDD_PL0_PWM_PH1_R_3
+	R49_3 I : -4 0
+	U2_3 I : -34 -22
+NetDegree : 1 AG_DVDD_PL0_PWM_PH2_3
+	R50_3 I : 0 -4
+NetDegree : 2 AG_DVDD_PL0_PWM_PH2_R_3
+	R50_3 I : 0 4
+	U2_3 I : -34 -26
+NetDegree : 1 AG_DVDD_PL1_ASIC1_PWMVID_R
+	U3_3 I : 35 14
+NetDegree : 1 AG_DVDD_PL1_PWM_PH1_3
+	R77_3 I : 0 -4
+NetDegree : 2 AG_DVDD_PL1_PWM_PH1_R_3
+	R77_3 I : 0 4
+	U3_3 I : -34 -22
+NetDegree : 1 AG_DVDD_PL1_PWM_PH2_3
+	R78_3 I : 4 0
+NetDegree : 2 AG_DVDD_PL1_PWM_PH2_R_3
+	R78_3 I : -4 0
+	U3_3 I : -34 -26
+NetDegree : 2 AG_HVDD_PL0_PWMVID_3
+	U2_3 I : 35 6
+	R48_3 I : -4 0
+NetDegree : 1 AG_HVDD_PL0_PWM_PH1_3
+	R52_3 I : -4 0
+NetDegree : 2 AG_HVDD_PL0_PWM_PH1_R_3
+	R52_3 I : 4 0
+	U2_3 I : 26 -34
+NetDegree : 1 AG_HVDD_PL0_PWM_PH2_3
+	R51_3 I : 4 0
+NetDegree : 2 AG_HVDD_PL0_PWM_PH2_R_3
+	R51_3 I : -4 0
+	U2_3 I : 22 -34
+NetDegree : 2 AG_HVDD_PL1_PWMVID_3
+	U3_3 I : 35 6
+	R76_3 I : -4 0
+NetDegree : 1 AG_HVDD_PL1_PWM_PH1_3
+	R80_3 I : 0 -4
+NetDegree : 2 AG_HVDD_PL1_PWM_PH1_R_3
+	R80_3 I : 0 4
+	U3_3 I : 26 -34
+NetDegree : 1 AG_HVDD_PL1_PWM_PH2_3
+	R79_3 I : -4 0
+NetDegree : 2 AG_HVDD_PL1_PWM_PH2_R_3
+	R79_3 I : 4 0
+	U3_3 I : 22 -34
+NetDegree : 1 AG_VDD_ASIC1_PWMVID_R
+	U1_3 I : -34 -6
+NetDegree : 1 AG_VDD_PWMVID2_3
+	U1_3 I : -34 -14
+NetDegree : 1 AG_VDD_PWM_PH10_3
+	R16_3 I : 0 -4
+NetDegree : 2 AG_VDD_PWM_PH10_R_3
+	U1_3 I : 10 35
+	R16_3 I : 0 4
+NetDegree : 1 AG_VDD_PWM_PH11_3
+	R15_3 I : 0 4
+NetDegree : 2 AG_VDD_PWM_PH11_R_3
+	U1_3 I : 14 35
+	R15_3 I : 0 -4
+NetDegree : 1 AG_VDD_PWM_PH12_3
+	R14_3 I : 0 4
+NetDegree : 2 AG_VDD_PWM_PH12_R_3
+	U1_3 I : 18 35
+	R14_3 I : 0 -4
+NetDegree : 1 AG_VDD_PWM_PH13_3
+	R13_3 I : -4 0
+NetDegree : 2 AG_VDD_PWM_PH13_R_3
+	U1_3 I : 22 35
+	R13_3 I : 4 0
+NetDegree : 1 AG_VDD_PWM_PH14_3
+	R12_3 I : 4 0
+NetDegree : 2 AG_VDD_PWM_PH14_R_3
+	U1_3 I : 26 35
+	R12_3 I : -4 0
+NetDegree : 1 AG_VDD_PWM_PH15_3
+	R11_3 I : 4 0
+NetDegree : 2 AG_VDD_PWM_PH15_R_3
+	U1_3 I : 34 26
+	R11_3 I : -4 0
+NetDegree : 1 AG_VDD_PWM_PH16_3
+	R10_3 I : 4 0
+NetDegree : 2 AG_VDD_PWM_PH16_R_3
+	U1_3 I : 34 22
+	R10_3 I : -4 0
+NetDegree : 1 AG_VDD_PWM_PH1_3
+	R25_3 I : -4 0
+NetDegree : 2 AG_VDD_PWM_PH1_R_3
+	U1_3 I : -26 35
+	R25_3 I : 4 0
+NetDegree : 1 AG_VDD_PWM_PH2_3
+	R24_3 I : -4 0
+NetDegree : 2 AG_VDD_PWM_PH2_R_3
+	U1_3 I : -22 35
+	R24_3 I : 4 0
+NetDegree : 1 AG_VDD_PWM_PH3_3
+	R23_3 I : 0 4
+NetDegree : 2 AG_VDD_PWM_PH3_R_3
+	U1_3 I : -18 35
+	R23_3 I : 0 -4
+NetDegree : 1 AG_VDD_PWM_PH4_3
+	R22_3 I : 4 0
+NetDegree : 2 AG_VDD_PWM_PH4_R_3
+	U1_3 I : -14 35
+	R22_3 I : -4 0
+NetDegree : 1 AG_VDD_PWM_PH5_3
+	R21_3 I : 0 4
+NetDegree : 2 AG_VDD_PWM_PH5_R_3
+	U1_3 I : -10 35
+	R21_3 I : 0 -4
+NetDegree : 1 AG_VDD_PWM_PH6_3
+	R20_3 I : 0 -4
+NetDegree : 2 AG_VDD_PWM_PH6_R_3
+	U1_3 I : -6 35
+	R20_3 I : 0 4
+NetDegree : 1 AG_VDD_PWM_PH7_3
+	R19_3 I : 0 4
+NetDegree : 2 AG_VDD_PWM_PH7_R_3
+	U1_3 I : -2 35
+	R19_3 I : 0 -4
+NetDegree : 1 AG_VDD_PWM_PH8_3
+	R18_3 I : -4 0
+NetDegree : 2 AG_VDD_PWM_PH8_R_3
+	U1_3 I : 2 35
+	R18_3 I : 4 0
+NetDegree : 1 AG_VDD_PWM_PH9_3
+	R17_3 I : 0 4
+NetDegree : 2 AG_VDD_PWM_PH9_R_3
+	U1_3 I : 6 35
+	R17_3 I : 0 -4
+NetDegree : 2 GP_HVDD_DVDD_S0_ASIC1_ALERT_L
+	R37_3 I : -4 0
+	U2_3 I : 35 -18
+NetDegree : 2 GP_HVDD_DVDD_S1_ASIC1_ALERT_L
+	R65_3 I : -4 0
+	U3_3 I : 35 -18
+NetDegree : 2 GP_VDD_ASIC1_ALERT_L
+	U1_3 I : -34 18
+	R1_3 I : 4 0
+NetDegree : 3 I2C_PMBUS_ASIC1_SCL
+	U1_3 I : -34 22
+	U2_3 I : 35 -22
+	U3_3 I : 35 -22
+NetDegree : 3 I2C_PMBUS_ASIC1_SDA
+	U1_3 I : -34 26
+	U2_3 I : 35 -26
+	U3_3 I : 35 -26
+NetDegree : 1 SNN_HVDD_DVDD_PL0_ISEN10_3
+	U2_3 I : -10 34
+NetDegree : 1 SNN_HVDD_DVDD_PL0_ISEN11_3
+	U2_3 I : -14 34
+NetDegree : 1 SNN_HVDD_DVDD_PL0_ISEN12_3
+	U2_3 I : -18 34
+NetDegree : 1 SNN_HVDD_DVDD_PL0_ISEN13_3
+	U2_3 I : -22 34
+NetDegree : 1 SNN_HVDD_DVDD_PL0_ISEN14_3
+	U2_3 I : -26 34
+NetDegree : 1 SNN_HVDD_DVDD_PL0_ISEN3_3
+	U2_3 I : 18 34
+NetDegree : 1 SNN_HVDD_DVDD_PL0_ISEN4_3
+	U2_3 I : 14 34
+NetDegree : 1 SNN_HVDD_DVDD_PL0_ISEN5_3
+	U2_3 I : 10 34
+NetDegree : 1 SNN_HVDD_DVDD_PL0_ISEN6_3
+	U2_3 I : 6 34
+NetDegree : 1 SNN_HVDD_DVDD_PL0_ISEN7_3
+	U2_3 I : 2 34
+NetDegree : 1 SNN_HVDD_DVDD_PL0_ISEN8_3
+	U2_3 I : -2 34
+NetDegree : 1 SNN_HVDD_DVDD_PL0_ISEN9_3
+	U2_3 I : -6 34
+NetDegree : 1 SNN_HVDD_DVDD_PL0_PWM10_3
+	U2_3 I : -10 -34
+NetDegree : 1 SNN_HVDD_DVDD_PL0_PWM11_3
+	U2_3 I : -14 -34
+NetDegree : 1 SNN_HVDD_DVDD_PL0_PWM12_3
+	U2_3 I : -18 -34
+NetDegree : 1 SNN_HVDD_DVDD_PL0_PWM13_3
+	U2_3 I : -22 -34
+NetDegree : 1 SNN_HVDD_DVDD_PL0_PWM14_3
+	U2_3 I : -26 -34
+NetDegree : 1 SNN_HVDD_DVDD_PL0_PWM3_3
+	U2_3 I : 18 -34
+NetDegree : 1 SNN_HVDD_DVDD_PL0_PWM4_3
+	U2_3 I : 14 -34
+NetDegree : 1 SNN_HVDD_DVDD_PL0_PWM5_3
+	U2_3 I : 10 -34
+NetDegree : 1 SNN_HVDD_DVDD_PL0_PWM6_3
+	U2_3 I : 6 -34
+NetDegree : 1 SNN_HVDD_DVDD_PL0_PWM7_3
+	U2_3 I : 2 -34
+NetDegree : 1 SNN_HVDD_DVDD_PL0_PWM8_3
+	U2_3 I : -2 -34
+NetDegree : 1 SNN_HVDD_DVDD_PL0_PWM9_3
+	U2_3 I : -6 -34
+NetDegree : 1 SNN_HVDD_DVDD_PL1_ISEN10_3
+	U3_3 I : -10 34
+NetDegree : 1 SNN_HVDD_DVDD_PL1_ISEN11_3
+	U3_3 I : -14 34
+NetDegree : 1 SNN_HVDD_DVDD_PL1_ISEN12_3
+	U3_3 I : -18 34
+NetDegree : 1 SNN_HVDD_DVDD_PL1_ISEN13_3
+	U3_3 I : -22 34
+NetDegree : 1 SNN_HVDD_DVDD_PL1_ISEN14_3
+	U3_3 I : -26 34
+NetDegree : 1 SNN_HVDD_DVDD_PL1_ISEN3_3
+	U3_3 I : 18 34
+NetDegree : 1 SNN_HVDD_DVDD_PL1_ISEN4_3
+	U3_3 I : 14 34
+NetDegree : 1 SNN_HVDD_DVDD_PL1_ISEN5_3
+	U3_3 I : 10 34
+NetDegree : 1 SNN_HVDD_DVDD_PL1_ISEN6_3
+	U3_3 I : 6 34
+NetDegree : 1 SNN_HVDD_DVDD_PL1_ISEN7_3
+	U3_3 I : 2 34
+NetDegree : 1 SNN_HVDD_DVDD_PL1_ISEN8_3
+	U3_3 I : -2 34
+NetDegree : 1 SNN_HVDD_DVDD_PL1_ISEN9_3
+	U3_3 I : -6 34
+NetDegree : 1 SNN_HVDD_DVDD_PL1_PWM10_3
+	U3_3 I : -10 -34
+NetDegree : 1 SNN_HVDD_DVDD_PL1_PWM11_3
+	U3_3 I : -14 -34
+NetDegree : 1 SNN_HVDD_DVDD_PL1_PWM12_3
+	U3_3 I : -18 -34
+NetDegree : 1 SNN_HVDD_DVDD_PL1_PWM13_3
+	U3_3 I : -22 -34
+NetDegree : 1 SNN_HVDD_DVDD_PL1_PWM14_3
+	U3_3 I : -26 -34
+NetDegree : 1 SNN_HVDD_DVDD_PL1_PWM3_3
+	U3_3 I : 18 -34
+NetDegree : 1 SNN_HVDD_DVDD_PL1_PWM4_3
+	U3_3 I : 14 -34
+NetDegree : 1 SNN_HVDD_DVDD_PL1_PWM5_3
+	U3_3 I : 10 -34
+NetDegree : 1 SNN_HVDD_DVDD_PL1_PWM6_3
+	U3_3 I : 6 -34
+NetDegree : 1 SNN_HVDD_DVDD_PL1_PWM7_3
+	U3_3 I : 2 -34
+NetDegree : 1 SNN_HVDD_DVDD_PL1_PWM8_3
+	U3_3 I : -2 -34
+NetDegree : 1 SNN_HVDD_DVDD_PL1_PWM9_3
+	U3_3 I : -6 -34
+NetDegree : 2 S_DVDD_PL0_IMON_3
+	R42_3 I : 4 0
+	U2_3 I : 35 -6
+NetDegree : 1 S_DVDD_PL0_ISEN_PH1_3
+	U2_3 I : -34 22
+NetDegree : 1 S_DVDD_PL0_ISEN_PH2_3
+	U2_3 I : -34 26
+NetDegree : 3 S_DVDD_PL0_SENSE_P_R_3
+	C16_3 I : 0 -4
+	R54_3 I : 0 -7
+	U2_3 I : -34 14
+NetDegree : 1 S_DVDD_PL0_TAO_3
+	R62_3 I : 0 -4
+NetDegree : 4 S_DVDD_PL0_TAO_R_3
+	R60_3 I : 0 4
+	C25_3 I : 0 4
+	R62_3 I : 0 4
+	U2_3 I : -34 -2
+NetDegree : 2 S_DVDD_PL0_VBOOT_3
+	R46_3 I : 0 4
+	U2_3 I : -34 -6
+NetDegree : 2 S_DVDD_PL1_IMON_3
+	R70_3 I : 4 0
+	U3_3 I : 35 -6
+NetDegree : 1 S_DVDD_PL1_ISEN_PH1_3
+	U3_3 I : -34 22
+NetDegree : 1 S_DVDD_PL1_ISEN_PH2_3
+	U3_3 I : -34 26
+NetDegree : 3 S_DVDD_PL1_SENSE_P_R_3
+	C31_3 I : 0 -4
+	R82_3 I : 0 -7
+	U3_3 I : -34 14
+NetDegree : 1 S_DVDD_PL1_TAO_3
+	R90_3 I : 0 -4
+NetDegree : 4 S_DVDD_PL1_TAO_R_3
+	R88_3 I : 0 4
+	C40_3 I : 0 4
+	R90_3 I : 0 4
+	U3_3 I : -34 -2
+NetDegree : 2 S_DVDD_PL1_VBOOT_3
+	R74_3 I : 0 4
+	U3_3 I : -34 -6
+NetDegree : 2 S_DVDD_S0_ASIC1_EN
+	R41_3 I : -4 0
+	U2_3 I : -34 10
+NetDegree : 2 S_DVDD_S0_ASIC1_PG
+	R40_3 I : 4 0
+	U2_3 I : 35 2
+NetDegree : 2 S_DVDD_S0_ASIC1_SENSE_N
+	C16_3 I : 0 4
+	U2_3 I : -34 18
+NetDegree : 1 S_DVDD_S0_ASIC1_SENSE_P
+	R54_3 I : 0 7
+NetDegree : 2 S_DVDD_S1_ASIC1_EN
+	R69_3 I : -4 0
+	U3_3 I : -34 10
+NetDegree : 2 S_DVDD_S1_ASIC1_PG
+	R68_3 I : 4 0
+	U3_3 I : 35 2
+NetDegree : 2 S_DVDD_S1_ASIC1_SENSE_N
+	C31_3 I : 0 4
+	U3_3 I : -34 18
+NetDegree : 1 S_DVDD_S1_ASIC1_SENSE_P
+	R82_3 I : 0 7
+NetDegree : 3 S_HVDD_DVDD_PL0_ADDR_PMBUS_3
+	R64_3 I : 0 4
+	U2_3 I : -34 6
+	R63_3 I : 0 -4
+NetDegree : 1 S_HVDD_DVDD_PL0_VDDIO_3
+	U2_3 I : 35 18
+NetDegree : 4 S_HVDD_DVDD_PL0_VINSEN_3
+	R59_3 I : 4 0
+	U2_3 I : -34 -10
+	R58_3 I : -4 0
+	C21_3 I : -4 0
+NetDegree : 3 S_HVDD_DVDD_PL1_ADDR_PMBUS_3
+	R92_3 I : 0 4
+	R91_3 I : 0 -4
+	U3_3 I : -34 6
+NetDegree : 1 S_HVDD_DVDD_PL1_VDDIO_3
+	U3_3 I : 35 18
+NetDegree : 4 S_HVDD_DVDD_PL1_VINSEN_3
+	C36_3 I : -4 0
+	R86_3 I : -4 0
+	R87_3 I : 0 4
+	U3_3 I : -34 -10
+NetDegree : 2 S_HVDD_PL0_IMON_3
+	R47_3 I : -4 0
+	U2_3 I : 35 -2
+NetDegree : 1 S_HVDD_PL0_ISEN_PH1_3
+	U2_3 I : 26 34
+NetDegree : 1 S_HVDD_PL0_ISEN_PH2_3
+	U2_3 I : 22 34
+NetDegree : 3 S_HVDD_PL0_SENSE_P_R_3
+	C15_3 I : 4 0
+	R53_3 I : 7 0
+	U2_3 I : 35 22
+NetDegree : 1 S_HVDD_PL0_TAO_3
+	R61_3 I : 0 4
+NetDegree : 4 S_HVDD_PL0_TAO_R_3
+	R57_3 I : 0 -4
+	C23_3 I : 0 -4
+	R61_3 I : 0 -4
+	U2_3 I : -34 2
+NetDegree : 2 S_HVDD_PL0_VBOOT_3
+	U2_3 I : 35 10
+	R44_3 I : -4 0
+NetDegree : 2 S_HVDD_PL1_IMON_3
+	R75_3 I : -4 0
+	U3_3 I : 35 -2
+NetDegree : 1 S_HVDD_PL1_ISEN_PH1_3
+	U3_3 I : 26 34
+NetDegree : 1 S_HVDD_PL1_ISEN_PH2_3
+	U3_3 I : 22 34
+NetDegree : 3 S_HVDD_PL1_SENSE_P_R_3
+	C30_3 I : 4 0
+	R81_3 I : 0 6
+	U3_3 I : 35 22
+NetDegree : 1 S_HVDD_PL1_TAO_3
+	R89_3 I : 0 4
+NetDegree : 4 S_HVDD_PL1_TAO_R_3
+	R85_3 I : 0 -4
+	C38_3 I : 0 -4
+	R89_3 I : 0 -4
+	U3_3 I : -34 2
+NetDegree : 2 S_HVDD_PL1_VBOOT_3
+	R72_3 I : -4 0
+	U3_3 I : 35 10
+NetDegree : 2 S_HVDD_S0_ASIC1_EN
+	R39_3 I : -4 0
+	U2_3 I : 35 -10
+NetDegree : 2 S_HVDD_S0_ASIC1_PG
+	R38_3 I : -4 0
+	U2_3 I : 35 -14
+NetDegree : 2 S_HVDD_S0_ASIC1_SENSE_N
+	C15_3 I : -4 0
+	U2_3 I : 35 26
+NetDegree : 1 S_HVDD_S0_ASIC1_SENSE_P
+	R53_3 I : -6 0
+NetDegree : 2 S_HVDD_S1_ASIC1_EN
+	R67_3 I : -4 0
+	U3_3 I : 35 -10
+NetDegree : 2 S_HVDD_S1_ASIC1_PG
+	R66_3 I : -4 0
+	U3_3 I : 35 -14
+NetDegree : 2 S_HVDD_S1_ASIC1_SENSE_N
+	C30_3 I : -4 0
+	U3_3 I : 35 26
+NetDegree : 1 S_HVDD_S1_ASIC1_SENSE_P
+	R81_3 I : 0 -7
+NetDegree : 3 S_VDD_ADDR_PMBUS_3
+	U1_3 I : 34 -6
+	R36_3 I : 0 -4
+	R35_3 I : 0 4
+NetDegree : 2 S_VDD_ASIC1_EN
+	U1_3 I : -34 10
+	R3_3 I : 4 0
+NetDegree : 2 S_VDD_ASIC1_PG
+	U1_3 I : -34 14
+	R2_3 I : 4 0
+NetDegree : 2 S_VDD_ASIC1_SENSE_N
+	U1_3 I : -34 -26
+	C3_3 I : 4 0
+NetDegree : 1 S_VDD_ASIC1_SENSE_P
+	R27_3 I : 7 0
+NetDegree : 2 S_VDD_IMON_L1_3
+	U1_3 I : -34 2
+	R9_3 I : 4 0
+NetDegree : 2 S_VDD_IMON_L2_3
+	U1_3 I : -34 6
+	R5_3 I : 0 -4
+NetDegree : 1 S_VDD_ISEN_PH10_3
+	U1_3 I : 10 -34
+NetDegree : 1 S_VDD_ISEN_PH11_3
+	U1_3 I : 14 -34
+NetDegree : 1 S_VDD_ISEN_PH12_3
+	U1_3 I : 18 -34
+NetDegree : 1 S_VDD_ISEN_PH13_3
+	U1_3 I : 22 -34
+NetDegree : 1 S_VDD_ISEN_PH14_3
+	U1_3 I : 26 -34
+NetDegree : 1 S_VDD_ISEN_PH15_3
+	U1_3 I : 34 -26
+NetDegree : 1 S_VDD_ISEN_PH16_3
+	U1_3 I : 34 -22
+NetDegree : 1 S_VDD_ISEN_PH1_3
+	U1_3 I : -26 -34
+NetDegree : 1 S_VDD_ISEN_PH2_3
+	U1_3 I : -22 -34
+NetDegree : 1 S_VDD_ISEN_PH3_3
+	U1_3 I : -18 -34
+NetDegree : 1 S_VDD_ISEN_PH4_3
+	U1_3 I : -14 -34
+NetDegree : 1 S_VDD_ISEN_PH5_3
+	U1_3 I : -10 -34
+NetDegree : 1 S_VDD_ISEN_PH6_3
+	U1_3 I : -6 -34
+NetDegree : 1 S_VDD_ISEN_PH7_3
+	U1_3 I : -2 -34
+NetDegree : 1 S_VDD_ISEN_PH8_3
+	U1_3 I : 2 -34
+NetDegree : 1 S_VDD_ISEN_PH9_3
+	U1_3 I : 6 -34
+NetDegree : 2 S_VDD_PG_L2_3
+	U1_3 I : -34 -2
+	R4_3 I : -4 0
+NetDegree : 3 S_VDD_SENSE_P_R_3
+	U1_3 I : -34 -22
+	R27_3 I : -7 0
+	C3_3 I : -4 0
+NetDegree : 1 S_VDD_TAO_3
+	R34_3 I : 0 -4
+NetDegree : 4 S_VDD_TAO_R_3
+	U1_3 I : 34 -2
+	R34_3 I : 0 4
+	R30_3 I : 0 4
+	C11_3 I : 0 4
+NetDegree : 2 S_VDD_TSNS2_3
+	U1_3 I : 34 2
+	R33_3 I : 0 -4
+NetDegree : 2 S_VDD_VBOOT2_3
+	U1_3 I : 34 6
+	R8_3 I : 0 -4
+NetDegree : 2 S_VDD_VBOOT_3
+	U1_3 I : -34 -10
+	R7_3 I : 4 0
+NetDegree : 1 S_VDD_VDDIO_3
+	U1_3 I : -34 -18
+NetDegree : 4 S_VDD_VINSEN_3
+	U1_3 I : 34 10
+	R32_3 I : 0 -4
+	C8_3 I : 4 0
+	R31_3 I : 4 0
+NetDegree : 4 S_VREF_HVDD_DVDD_PL0_3
+	C22_3 I : 0 4
+	C24_3 I : 0 6
+	R64_3 I : 0 -4
+	U2_3 I : -34 -14
+NetDegree : 4 S_VREF_HVDD_DVDD_PL1_3
+	C37_3 I : 0 4
+	C39_3 I : 0 7
+	R92_3 I : 0 -4
+	U3_3 I : -34 -14
+NetDegree : 4 S_VREF_VDD_3
+	U1_3 I : 34 14
+	C10_3 I : 0 -7
+	C9_3 I : 0 -4
+	R36_3 I : 0 4
+NetDegree : 1 VDD_1
+	R96_3 I : 0 4

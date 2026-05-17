@@ -1,0 +1,6 @@
+dataset,components,nets,pins,image
+small-1,57,85,167,results\initial_layouts\small-1_initial_layout.png
+small-2,43,82,129,results\initial_layouts\small-2_initial_layout.png
+small-3,41,49,105,results\initial_layouts\small-3_initial_layout.png
+small-4,46,26,85,results\initial_layouts\small-4_initial_layout.png
+small-5,115,199,334,results\initial_layouts\small-5_initial_layout.png

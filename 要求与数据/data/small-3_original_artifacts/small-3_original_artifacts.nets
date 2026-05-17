@@ -1,0 +1,161 @@
+UCLA nets 1.0
+
+NumNets : 49
+NumPins : 105
+
+# PB201_A00.nets generated on 2024-09-13T102836 using /home/scratch.niansongz_research/pcb-util/pcb.py 1.0
+
+NetDegree : 1 NET_12V_VCORE
+	R3014 I : 4 0
+NetDegree : 1 NET_3.3V_AUX
+	R2997 I : 0 -4
+NetDegree : 6 NET_3.3V_CONT_VCORE
+	R3005 I : -4 0
+	R3004 I : -4 0
+	C3049 I : 0 7
+	C3051 I : 0 4
+	R2997 I : 0 4
+	U400 I : 24 -14
+NetDegree : 1 NET_5V_DRV
+	R3031 I : 4 0
+NetDegree : 1 AG_VCORE_PWM1
+	U400 I : 24 -18
+NetDegree : 1 AG_VCORE_PWM10
+	U400 I : -14 -24
+NetDegree : 1 AG_VCORE_PWM2
+	U400 I : 18 -24
+NetDegree : 1 AG_VCORE_PWM3
+	U400 I : 14 -24
+NetDegree : 1 AG_VCORE_PWM4
+	U400 I : 10 -24
+NetDegree : 1 AG_VCORE_PWM5
+	U400 I : 6 -24
+NetDegree : 1 AG_VCORE_PWM6
+	U400 I : 2 -24
+NetDegree : 1 AG_VCORE_PWM7
+	U400 I : -2 -24
+NetDegree : 1 AG_VCORE_PWM8
+	U400 I : -6 -24
+NetDegree : 1 AG_VCORE_PWM9
+	U400 I : -10 -24
+NetDegree : 2 GP_DCDC_VCORE_CPLD_ALERT
+	R3004 I : 4 0
+	U400 I : -18 -24
+NetDegree : 2 GP_DCDC_VCORE_PSI
+	R3007 I : 4 0
+	U400 I : -24 -6
+NetDegree : 1 GP_VCORE_BOOT
+	U400 I : -24 10
+NetDegree : 11 GP_VCORE_CSSUM
+	R3026 I : 4 0
+	R3025 I : 4 0
+	R3024 I : 4 0
+	R3023 I : 4 0
+	R3022 I : 4 0
+	R3021 I : 4 0
+	R3020 I : 4 0
+	R3019 I : 4 0
+	R3018 I : 0 4
+	R3017 I : -4 0
+	U400 I : 18 25
+NetDegree : 2 GP_VCORE_IREF
+	R3013 I : 0 -4
+	U400 I : -2 25
+NetDegree : 3 GP_VCORE_REF_ADJ
+	U374 I : -10 -11
+	C3059 I : 0 4
+	R3029 I : -4 0
+NetDegree : 2 GP_VCORE_VDIFF
+	R3002 I : 4 0
+	U400 I : -10 25
+NetDegree : 2 GP_VCORE_VFB
+	R3002 I : -4 0
+	U400 I : -14 25
+NetDegree : 2 GP_VCORE_VR_IMON_R
+	R3011 I : 0 4
+	R3012 I : -4 0
+NetDegree : 1 I2C_DCDC3_SCL
+	U400 I : -24 2
+NetDegree : 1 I2C_DCDC3_SDA
+	U400 I : -24 6
+NetDegree : 1 SNN_PWR_VCORE_NC1
+	U400 I : -24 -14
+NetDegree : 3 S_ADDR_PMBUS_CONT_VCORE
+	R3010 I : 0 -4
+	R3009 I : -4 0
+	U400 I : 6 25
+NetDegree : 1 S_TAO_VCORE
+	R2998 I : -7 0
+NetDegree : 4 S_TAO_VCORE_R
+	R2998 I : 6 0
+	R3003 I : -4 0
+	C3050 I : -4 0
+	U400 I : -24 -18
+NetDegree : 2 S_VCORE_ACSP10_P
+	R3017 I : 4 0
+	U400 I : -6 25
+NetDegree : 2 S_VCORE_ACSP1_P
+	R3026 I : -4 0
+	U400 I : 24 18
+NetDegree : 2 S_VCORE_ACSP2_P
+	R3025 I : -4 0
+	U400 I : 24 14
+NetDegree : 2 S_VCORE_ACSP3_P
+	R3024 I : -4 0
+	U400 I : 24 10
+NetDegree : 2 S_VCORE_ACSP4_P
+	R3023 I : -4 0
+	U400 I : 24 6
+NetDegree : 2 S_VCORE_ACSP5_P
+	R3022 I : -4 0
+	U400 I : 24 2
+NetDegree : 2 S_VCORE_ACSP6_P
+	R3021 I : -4 0
+	U400 I : 24 -2
+NetDegree : 2 S_VCORE_ACSP7_P
+	R3020 I : -4 0
+	U400 I : 24 -6
+NetDegree : 2 S_VCORE_ACSP8_P
+	R3019 I : -4 0
+	U400 I : 24 -10
+NetDegree : 2 S_VCORE_ACSP9_P
+	R3018 I : 0 -4
+	U400 I : -18 25
+NetDegree : 2 S_VCORE_EN
+	R3008 I : 4 0
+	U400 I : -24 -2
+NetDegree : 2 S_VCORE_PG
+	R3005 I : 4 0
+	U400 I : -24 -10
+NetDegree : 2 S_VCORE_SENSE_N
+	C3057 I : 0 -4
+	U400 I : -24 14
+NetDegree : 1 S_VCORE_SENSE_P
+	R3016 I : 0 7
+NetDegree : 3 S_VCORE_SENSE_P_R
+	R3016 I : 0 -7
+	C3057 I : 0 4
+	U400 I : -24 18
+NetDegree : 3 S_VCORE_VR_IMON
+	C3053 I : -4 0
+	R3011 I : 0 -4
+	U400 I : 2 25
+NetDegree : 4 S_VINSEN_VCORE
+	C3056 I : -4 0
+	R3015 I : -4 0
+	R3014 I : -4 0
+	U400 I : 14 25
+NetDegree : 1 S_VREF_REFOUT_CONT_VCORE
+	R3028 I : 6 0
+NetDegree : 5 S_VREF_REFOUT_VCORE
+	U374 I : 9 -11
+	C3058 I : 0 4
+	R3031 I : -4 0
+	R3029 I : 4 0
+	R3028 I : -7 0
+NetDegree : 5 S_VREF_VDD18_VCORE
+	R3009 I : 4 0
+	C3054 I : -4 0
+	C3055 I : -4 0
+	R3007 I : -4 0
+	U400 I : 10 25

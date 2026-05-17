@@ -1,0 +1,218 @@
+UCLA nets 1.0
+
+NumNets : 82
+NumPins : 129
+
+# PB201_A00.nets generated on 2024-09-13T102834 using /home/scratch.niansongz_research/pcb-util/pcb.py 1.0
+
+NetDegree : 8 NET_3.3V_AUX
+	U360 I : 18 -37
+	U360 I : -17 38
+	C3020 I : 0 -4
+	C3019 I : 0 4
+	R2761 I : 0 -4
+	R2766 I : 0 4
+	R1292 I : 0 -4
+	R2763 I : 0 -4
+NetDegree : 2 AD_0_I2C_AUX
+	U360 I : 63 -37
+	R2761 I : 0 4
+NetDegree : 2 AD_1_I2C_AUX
+	U360 I : 68 -37
+	R2760 I : 0 4
+NetDegree : 2 AD_2_I2C_AUX
+	U360 I : 68 38
+	R2758 I : 0 -4
+NetDegree : 1 GP_ASIC_FU_EN_L
+	R2786 I : 0 4
+NetDegree : 2 GP_ASIC_FU_EN_L_R
+	U360 I : 38 38
+	R2786 I : 0 -4
+NetDegree : 1 GP_CEX_FU_EN_L
+	R2785 I : 0 4
+NetDegree : 2 GP_CEX_FU_EN_L_R
+	U360 I : 48 38
+	R2785 I : 0 -4
+NetDegree : 1 GP_CON_BUF_EN_L
+	R3151 I : 0 4
+NetDegree : 2 GP_GPIO_CPLD_CON_BUF_EN_L_R
+	U360 I : 58 38
+	R3151 I : 0 -4
+NetDegree : 1 GP_GPIO_OE_L
+	R2765 I : 4 0
+NetDegree : 3 GP_GPIO_OE_L_R
+	U360 I : 63 38
+	R2765 I : -4 0
+	R2767 I : -4 0
+NetDegree : 1 GP_GPIO_RESET_L
+	R2764 I : 0 4
+NetDegree : 3 GP_GPIO_RESET_L_R
+	U360 I : -67 38
+	R2764 I : 0 -4
+	R2766 I : 0 -4
+NetDegree : 1 GP_I2C_DCDC_A2D_EN_R
+	U360 I : -52 38
+NetDegree : 1 GP_I2C_DCDC_SW_EN
+	R2792 I : -4 0
+NetDegree : 2 GP_I2C_DCDC_SW_EN_R
+	U360 I : 3 38
+	R2792 I : 4 0
+NetDegree : 1 GP_I2C_TESTING_CON_EN
+	R4054 I : 0 4
+NetDegree : 2 GP_I2C_TESTING_CON_EN_R
+	U360 I : -2 38
+	R4054 I : 0 -4
+NetDegree : 1 GP_I2C_TESTING_S2S_EN
+	R2799 I : -4 0
+NetDegree : 2 GP_I2C_TESTING_S2S_EN_R
+	U360 I : -7 38
+	R2799 I : 4 0
+NetDegree : 1 GP_SECURED_DIS_JUMPER
+	R2795 I : -4 0
+NetDegree : 2 GP_SECURED_DIS_JUMPER_GPIO_R
+	U360 I : -57 38
+	R2795 I : 4 0
+NetDegree : 1 GP_SPI_COMEX_BURN_EN_L
+	R2789 I : 4 0
+NetDegree : 2 GP_SPI_COMEX_BURN_EN_L_R
+	U360 I : 23 38
+	R2789 I : -4 0
+NetDegree : 1 GP_SPI_FW_BUF_EN_L
+	R2257 I : 0 4
+NetDegree : 2 GP_SPI_FW_BUF_EN_L_R
+	U360 I : 13 38
+	R2257 I : 0 -4
+NetDegree : 1 GP_SPI_FW_BURN_EN_L
+	R2256 I : 4 0
+NetDegree : 2 GP_SPI_FW_BURN_EN_L_R
+	U360 I : 28 38
+	R2256 I : -4 0
+NetDegree : 1 GP_SPI_FW_BURN_SEL
+	R2258 I : 0 4
+NetDegree : 2 GP_SPI_FW_BURN_SEL_R
+	U360 I : 8 38
+	R2258 I : 0 -4
+NetDegree : 1 GP_SPI_FW_MUX_SEL
+	R2787 I : 0 4
+NetDegree : 2 GP_SPI_FW_MUX_SEL_3.3V_SSD_EN
+	U360 I : 33 38
+	R2787 I : 0 -4
+NetDegree : 2 GP_STRAP_FLASH_PRESENT_EN_R
+	U360 I : 48 -37
+	R2639 I : 0 4
+NetDegree : 1 GP_STRAP_LOCAL_FLASH_PRESENT
+	R2639 I : 0 -4
+NetDegree : 2 I2C_TESTING_GPIO_SCL
+	U360 I : -62 -37
+	R2763 I : 0 4
+NetDegree : 2 I2C_TESTING_GPIO_SDA
+	U360 I : -67 -37
+	R1292 I : 0 4
+NetDegree : 1 L_ASIC_CON_JTAG_BUF_EN_L
+	R2800 I : -4 0
+NetDegree : 2 L_ASIC_CON_JTAG_BUF_EN_L_R
+	U360 I : 53 38
+	R2800 I : 4 0
+NetDegree : 1 L_ASIC_JTAG_EN_L_R
+	U360 I : 58 -37
+NetDegree : 1 L_SOC_JTAG_BUF_EN_L
+	R2638 I : 0 4
+NetDegree : 2 L_SOC_JTAG_BUF_EN_R
+	U360 I : 53 -37
+	R2638 I : 0 -4
+NetDegree : 1 SE_OSCI_50MHZ_OE_R
+	U360 I : -22 38
+NetDegree : 1 SNN_GPIO_EXP_NC1
+	U360 I : -62 38
+NetDegree : 1 S_1.8V_ASIC_QPS_EN
+	R2777 I : 0 -4
+NetDegree : 2 S_1.8V_ASIC_QPS_PWR_EN_R
+	U360 I : 3 -37
+	R2777 I : 0 4
+NetDegree : 1 S_2.5V_OSC_EAST_WEST_EN
+	R2797 I : 0 -4
+NetDegree : 2 S_2.5V_OSC_EAST_WEST_EN_R
+	U360 I : 28 -37
+	R2797 I : 0 4
+NetDegree : 1 S_3.3V_ASIC_EN
+	R2772 I : -4 0
+NetDegree : 2 S_3.3V_ASIC_EN_R
+	U360 I : -27 -37
+	R2772 I : 4 0
+NetDegree : 1 S_3.3V_SSD_EN
+	R2778 I : 4 0
+NetDegree : 2 S_3.3V_SSD_PWR_EN_R
+	U360 I : 8 -37
+	R2778 I : -4 0
+NetDegree : 1 S_5V_CEX_PWR_EN_R
+	U360 I : -12 -37
+NetDegree : 1 S_5V_DRV_EN
+	R2773 I : 0 -4
+NetDegree : 2 S_5V_DRV_PWR_EN_R
+	U360 I : -22 -37
+	R2773 I : 0 4
+NetDegree : 1 S_ASIC_OSC_EAST_EN_R
+	U360 I : -37 38
+NetDegree : 1 S_ASIC_OSC_WEST_EN_R
+	U360 I : -47 38
+NetDegree : 1 S_ASIC_RCLK_EN
+	R2783 I : 4 0
+NetDegree : 2 S_ASIC_RCLK_EN_R
+	U360 I : -27 38
+	R2783 I : -4 0
+NetDegree : 1 S_ASIC_RST_L
+	R2782 I : 4 0
+NetDegree : 2 S_ASIC_RST_L_R
+	U360 I : 38 -37
+	R2782 I : -4 0
+NetDegree : 1 S_ASIC_TCXO_EN
+	R2796 I : -4 0
+NetDegree : 2 S_ASIC_TCXO_EN_R
+	U360 I : -12 38
+	R2796 I : 4 0
+NetDegree : 1 S_CEX_FU_EN_PS2_ON
+	U360 I : -2 -37
+NetDegree : 1 S_CEX_PWR_OK_PS1_ON
+	U360 I : -7 -37
+NetDegree : 1 S_CPLD_CEX_PWR_OK
+	R2794 I : 4 0
+NetDegree : 2 S_CPLD_CEX_PWR_OK_R
+	U360 I : 33 -37
+	R2794 I : -4 0
+NetDegree : 1 S_DVDD_0.9V_EAST_EN
+	R2770 I : 0 -4
+NetDegree : 2 S_DVDD_0.9V_EAST_EN_R
+	U360 I : -37 -37
+	R2770 I : 0 4
+NetDegree : 1 S_DVDD_0.9V_WEST_EN
+	R2771 I : -4 0
+NetDegree : 2 S_DVDD_0.9V_WEST_EN_R
+	U360 I : -32 -37
+	R2771 I : 4 0
+NetDegree : 1 S_HVDD_1.2V_EAST_EN
+	R2637 I : -4 0
+NetDegree : 2 S_HVDD_1.2V_EAST_EN_R
+	U360 I : -52 -37
+	R2637 I : 4 0
+NetDegree : 1 S_HVDD_1.2V_WEST_EN
+	R2769 I : 0 -4
+NetDegree : 2 S_HVDD_1.2V_WEST_EN_R
+	U360 I : -47 -37
+	R2769 I : 0 4
+NetDegree : 1 S_PCIE_CLK_EN_R
+	U360 I : -32 38
+NetDegree : 1 S_PORTS_P01_P16_EN
+	R2780 I : 0 -4
+NetDegree : 2 S_PORTS_P01_P16_EN_R
+	U360 I : 23 -37
+	R2780 I : 0 4
+NetDegree : 1 S_PORTS_P17_P32_EN
+	R2779 I : 4 0
+NetDegree : 2 S_PORTS_P17_P32_EN_R
+	U360 I : 13 -37
+	R2779 I : -4 0
+NetDegree : 1 S_VCORE_EN
+	R2768 I : -4 0
+NetDegree : 2 S_VCORE_EN_R
+	U360 I : -57 -37
+	R2768 I : 4 0
