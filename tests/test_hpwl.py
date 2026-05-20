@@ -1,4 +1,5 @@
-from src.hpwl import net_hpwl_detail, total_hpwl
+from src.geometry import oriented_size, rotated_about_center
+from src.hpwl import net_hpwl_detail, pin_position, total_hpwl
 from src.pcb_data import Component, Net, Pin, Placement
 
 
@@ -37,3 +38,16 @@ def test_net_hpwl_detail_keeps_bounding_box():
     assert detail.min_y == 5
     assert detail.max_y == 80
     assert detail.hpwl == 170
+
+
+def test_rotation_updates_pin_position_and_oriented_size():
+    component = Component("A", 10, 20)
+    placement = Placement("A", 0, 0, "N")
+    rotated = rotated_about_center(component, placement, "cw")
+
+    assert rotated.orient == "E"
+    assert oriented_size(component, rotated) == (20, 10)
+    assert (rotated.x, rotated.y) == (-5, 5)
+
+    # Pin offset (3, 4) rotates clockwise to (4, -3), with center preserved.
+    assert pin_position(component, rotated, 3, 4) == (9, 7)

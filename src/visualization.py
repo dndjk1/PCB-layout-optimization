@@ -22,6 +22,7 @@ def visualize_dataset(
     show_nets: bool = True,
     max_net_degree: int | None = 20,
     dpi: int = 180,
+    title: str | None = None,
 ) -> Path:
     output_path = Path(output_path)
     output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -49,10 +50,8 @@ def visualize_dataset(
     ax.set_aspect("equal")
     ax.set_xlabel("X")
     ax.set_ylabel("Y")
-    ax.set_title(
-        f"{dataset.name} initial layout\n"
-        f"{len(dataset.components)} components | {len(dataset.nets)} nets | {dataset.pin_count} pins"
-    )
+    title_text = title or f"{dataset.name} initial layout"
+    ax.set_title(f"{title_text}\n{len(dataset.components)} components | {len(dataset.nets)} nets | {dataset.pin_count} pins")
     ax.grid(True, alpha=0.15, linewidth=0.4)
     ax.legend(handles=_legend_handles(), loc="upper right", fontsize=7, framealpha=0.9)
     fig.tight_layout()
@@ -169,4 +168,3 @@ def _legend_handles() -> list:
         Line2D([0], [0], marker="o", color="w", markerfacecolor="white", markeredgecolor="#222222", label="Pin"),
         Line2D([0], [0], color="#888888", linewidth=1, label="Net connection"),
     ]
-

@@ -4,6 +4,7 @@ from dataclasses import dataclass
 from typing import Dict, Iterable, List, Tuple
 
 from .pcb_data import Component, Net, Pin, Placement
+from .geometry import oriented_size, rotate_pin_offset
 
 
 @dataclass(frozen=True)
@@ -29,7 +30,9 @@ class NetHPWL:
 
 def pin_position(component: Component, placement: Placement, dx: float, dy: float) -> Tuple[float, float]:
     """Calculate a pin's absolute coordinate from component lower-left coordinate."""
-    return placement.x + component.width / 2.0 + dx, placement.y + component.height / 2.0 + dy
+    width, height = oriented_size(component, placement)
+    pin_dx, pin_dy = rotate_pin_offset(dx, dy, placement.orient)
+    return placement.x + width / 2.0 + pin_dx, placement.y + height / 2.0 + pin_dy
 
 
 def all_pin_positions(
@@ -106,4 +109,3 @@ def _lookup_pin_owner(
     if pin.component not in placements:
         raise KeyError(f"Pin references component missing in .pl: {pin.component}")
     return components[pin.component], placements[pin.component]
-

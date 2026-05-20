@@ -4,6 +4,7 @@ from dataclasses import dataclass
 from typing import Dict, Iterable, List, Tuple
 
 from .pcb_data import Component, Net, Placement
+from .geometry import oriented_size
 
 
 @dataclass(frozen=True)
@@ -64,11 +65,12 @@ class LegalityResult:
 
 
 def component_rect(component: Component, placement: Placement) -> Rect:
+    width, height = oriented_size(component, placement)
     return Rect(
         left=placement.x,
         bottom=placement.y,
-        right=placement.x + component.width,
-        top=placement.y + component.height,
+        right=placement.x + width,
+        top=placement.y + height,
     )
 
 
@@ -181,4 +183,3 @@ def check_layout_legality(
         gap_violations=check_min_gap(components, placements, min_gap=min_gap),
         reference_violations=check_references(components, placements, nets),
     )
-

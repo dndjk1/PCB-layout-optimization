@@ -9,6 +9,9 @@ venv/
 env/
 
 # Generated outputs
+build/
+results/
+!results/.gitkeep
 results/ui_uploads/
 results/ui_images/
 results/initial_layouts/*.png
@@ -19,4 +22,3 @@ results/week1/*.csv
 Thumbs.db
 .vscode/
 .idea/
-
